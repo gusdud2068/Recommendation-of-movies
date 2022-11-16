@@ -1,19 +1,28 @@
 <template>
     <div class="card">
-  <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img-top" alt="...">
+  <img @click="movieDetail(movie)" :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{ movie.title }}</h5>
-    <p class="card-text">{{ movie.overview }}</p>
+    <!-- <p class="card-text">{{ movie.overview }}</p> -->
   </div>
   </div>
 </template>
 
 <script>
+// import MovieView from '@/views/MovieView'
+
 export default {
-name: 'MovieCard',
-props: {
-      movie: Object
-    }
+  name: 'MovieCard',
+  // components: { MovieView },
+  props: {
+    movie: Object
+  },
+  methods: {
+  movieDetail(movie) {
+    console.log(movie.id)
+    this.$router.push({ name: 'movie', params: { id: `${movie.id}`}})
+  }
+}
 };
 </script>
 

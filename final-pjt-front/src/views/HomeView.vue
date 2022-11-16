@@ -20,6 +20,6 @@ export default {
           // console.log(this.$store.state.movieList)
           return this.$store.state.moviesList
       }
-  }
+  },
 }
 </script>
