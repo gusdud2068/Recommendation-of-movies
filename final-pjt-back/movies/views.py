@@ -10,7 +10,7 @@ from .serializers import MovieListSerializer, GenreSerializer
 @api_view(["GET"])
 def index(request):
     if request.method == "GET":
-        movies=Movie.objects.all()
-        serializer=MovieListSerializer(movies,many=True)
-        return Response(serializer.data, status = status.HTTP_200_OK)
+        movies = Movie.objects.all()
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
