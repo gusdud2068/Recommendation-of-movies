@@ -21,18 +21,15 @@
 </nav>
 
     </nav>
-    <LastestMovies/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import LastestMovies from '@/components/LastestMovies'
 
 export default {
   name: 'App',
-  components: { LastestMovies },
   methods: {
     moviesList() {
       const URL = 'http://127.0.0.1:8000/movies/'
@@ -41,9 +38,7 @@ export default {
           url: URL,
       }).then((response) => {
         console.log(response.data)
-          // console.log(response.data.results)
           this.$store.state.moviesList = response.data
-          console.log(this.$store.state.moviesList)
       }).catch((error) => {
         console.log(error)
       })
