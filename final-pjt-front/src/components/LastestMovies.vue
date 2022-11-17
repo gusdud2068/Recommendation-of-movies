@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>당신의 취향을 저격할 상영중인 영화 TOP 10</h1>
-      <p>{{ genres }}</p>
+      <!-- <p>{{ genres }}</p> -->
       <p>{{ getRecommendedList }}</p>
   </div>
 </template>
@@ -49,8 +49,10 @@ export default {
     }
 
   },
-  created() {
-    this.recommendMovie()
+  watch: {
+    genres() {
+      this.recommendMovie()
+    }
   }
 }
 </script>
