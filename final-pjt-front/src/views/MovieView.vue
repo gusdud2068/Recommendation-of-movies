@@ -6,7 +6,7 @@
     <!-- 평점 if 문으로 별로 구현하기 -->
     <p>평점 : {{ movie?.vote_average }}</p>
     <p v-if="movie?.overview">줄거리 : {{ movie?.overview }}</p>
-      <LastestMovies
+      <LatestMovies
         :genres="genres"
       />
   </div>
@@ -14,11 +14,11 @@
 
 <script>
 import axios from 'axios'
-import LastestMovies from '@/components/LastestMovies'
+import LatestMovies from '@/components/LatestMovies'
 
 export default {
   name: 'MovieView',
-  components: { LastestMovies },
+  components: { LatestMovies },
   data() {
     return {
       movie: null,

@@ -16,12 +16,19 @@
           <router-link class="nav-link" :to="{ name: 'watchlist' }">WatchList</router-link>
         </li> -->
       </ul>
+    <span v-show="isLoggedIn">
+      <router-link @click.native="logout" to="#">Logout</router-link>
+    </span>
+    <span v-show="!isLoggedIn">
+      <router-link :to="{ name: 'Signup' }">Signup</router-link> |
+      <router-link :to="{ name: 'Login' }">Login</router-link>
+    </span>
     </div>
   </div>
 </nav>
 
     </nav>
-    <router-view/>
+    <router-view @login="changeLog"/>
   </div>
 </template>
 
@@ -30,7 +37,21 @@ import axios from 'axios'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      isLoggedIn: false,
+    };
+  },
   methods: {
+    logout() {
+      this.isLoggedIn = false;
+      localStorage.removeItem("jwt");
+      this.$router.push({ name: "Login" });
+    },
+    changeLog(){
+      this.isLoggedIn = true;
+      console.log(this.isLoggedIn)
+    },
     moviesList() {
       const URL = 'http://127.0.0.1:8000/movies/'
       axios({
@@ -46,7 +67,12 @@ export default {
   },
   created() {
     this.moviesList()
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      this.isLoggedIn = true;
+    }
   },
+
 }
 </script>
 

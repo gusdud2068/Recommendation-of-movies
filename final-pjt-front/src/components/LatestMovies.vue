@@ -1,8 +1,19 @@
 <template>
   <div>
-    <h1>당신의 취향을 저격할 상영중인 영화 TOP 10</h1>
+    <h1>당신의 취향을 저격할 상영중인 영화</h1>
       <!-- <p>{{ genres }}</p> -->
-      <p>{{ getRecommendedList }}</p>
+      <span v-for="movie in getRecommendedList" :key="movie.id">
+        <div class="card text-bg-dark">
+        <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <!-- css 로 제목 잘보이게 만들기! -->
+          <!-- 카드 margin 음수로 줘보기 -->
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
+        </div>
+      </div>
+      </span>
   </div>
 </template>
 
@@ -10,7 +21,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'LastestMovies',
+  name: 'LatestMovies',
   data() {
     return {
       recommends: null
@@ -34,8 +45,8 @@ export default {
             return movie.genres.includes(genre)
           })
           // console.log(recommend_movies)
-          const randommovie5 = recommend_movies.sort(() => 0.5 - Math.random())
-          this.recommends = randommovie5.splice(0, 4)
+          const randommovie9 = recommend_movies.sort(() => 0.5 - Math.random())
+          this.recommends = randommovie9.splice(0, 9)
           // console.log(this.recommends)
         })
         .catch((err) => {
