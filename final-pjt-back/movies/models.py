@@ -27,7 +27,7 @@ class Now_Movie(models.Model):
     vote_average = models.FloatField()
     overview = models.TextField()
     poster_path = models.CharField(max_length=200)
-    backdrop_path = models.CharField(max_length=200)
+    backdrop_path = models.CharField(null=True, max_length=200)
     genres = models.ManyToManyField(Genre)
     year = models.IntegerField()
     ranking = models.IntegerField()

@@ -1,6 +1,5 @@
 <template>
     <div>
-      <LastestMovies/>
       <MovieCard
           v-for="movie in moviesList" :key="movie.id"
           :movie="movie"
@@ -11,12 +10,11 @@
 
 <script>
 // @ is an alias to /src
-import LastestMovies from '@/components/LastestMovies'
 import MovieCard from '@/components/MovieCard'
 
 export default {
   name: 'HomeView',
-  components: { MovieCard, LastestMovies },
+  components: { MovieCard },
   computed: {
       moviesList() {
           // console.log(this.$store.state.movieList)

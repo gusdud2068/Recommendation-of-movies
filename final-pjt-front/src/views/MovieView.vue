@@ -1,22 +1,28 @@
 <template>
   <div>
-    <h1>{{ movie.title }}</h1>
-    <img :src="`https://www.themoviedb.org/t/p/original${movie.poster_path}`" alt="">
-    <p>개봉날짜 : {{ movie.release_date }}</p>
+    <h1>{{ movie?.title }}</h1>
+    <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="">
+    <p>개봉날짜 : {{ movie?.release_date }}</p>
     <!-- 평점 if 문으로 별로 구현하기 -->
-    <p>평점 : {{ movie.vote_average }}</p>
-    <p v-if="movie.overview">줄거리 : {{ movie.overview }}</p>
+    <p>평점 : {{ movie?.vote_average }}</p>
+    <p v-if="movie?.overview">줄거리 : {{ movie?.overview }}</p>
+      <LastestMovies
+        :genres="genres"
+      />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import LastestMovies from '@/components/LastestMovies'
 
 export default {
   name: 'MovieView',
+  components: { LastestMovies },
   data() {
     return {
       movie: null,
+      genres: null,
     }
   },
   computed: {
@@ -37,8 +43,11 @@ export default {
           const detail = res.data.filter((movie) => {
             return movie.id === Number(movie_id)
           })
+          const genres = detail[0].genres
+          this.genres = genres
+          console.log(this.genres)
           this.movie = detail[0]
-          console.log(this.movie)
+          // console.log(this.movie)
         })
     }
 

@@ -15,7 +15,7 @@ def index(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def index(request):
+def now(request):
     if request.method == "GET":
         movies = Now_Movie.objects.all()
         serializer = LatestMovieSerializer(movies, many=True)

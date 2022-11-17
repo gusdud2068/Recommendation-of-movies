@@ -37,7 +37,7 @@ export default {
         method: 'get',
           url: URL,
       }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
           this.$store.state.moviesList = response.data
       }).catch((error) => {
         console.log(error)
