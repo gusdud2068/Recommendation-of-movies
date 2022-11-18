@@ -22,11 +22,12 @@ def now(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-# @api_view(["GET"])
-# def commentindex(request, Now_Movie_pk):
-#     movie = Now_Movie.objects.get(pk=Now_Movie_pk)
-#     comments = movie.comment_set.all()
-#     return Response ({'Now_movie': movie,'comments': comments,})
+@api_view(["GET"])
+def movie_comments(request, movie_pk):
+    movie = Now_Movie.objects.get(pk=movie_pk)
+    serializer = LatestMovieSerializer(movie)
+    comments = movie.comments_set.all()
+    return Response ({'Now_movie': serializer.data,'comments': comments,})
 
 @api_view(['GET'])
 def comment_list(request):
@@ -56,13 +57,11 @@ def comment_detail(request, comment_pk):
             serializer.save()
             return Response(serializer.data)
 
-    
-
 
 @api_view(['POST'])
 def comment_create(request, movie_pk):
     # article = Article.objects.get(pk=article_pk)
-    movie = get_object_or_404(Now_Movie,pk=movie_pk)
+    movie = get_object_or_404(Now_Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie)

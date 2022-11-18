@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import MovieView from '../views/MovieView.vue'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
+import CommunityView from '@/views/CommunityView'
 
 
 Vue.use(VueRouter)
@@ -18,6 +19,11 @@ const routes = [
     path: '/movie/:id',
     name: 'movie',
     component: MovieView,
+  },
+  {
+    path: '/movie/community/:latestmovie_id',
+    name: 'latestmovie',
+    component: CommunityView,
   },
   {
     path: '/accounts/signup',

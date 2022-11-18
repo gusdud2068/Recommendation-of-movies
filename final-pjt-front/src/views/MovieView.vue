@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>{{ movie?.title }}</h1>
+    <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
     <img @click="movieVideo(movie)" :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="">
-    <iframe :v-show="isClicked" :src="`https://wwww.youtube.com/embed/${video}?autoplay=1`" frameborder="0"></iframe>
+    <iframe :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0"></iframe>
     <p>개봉날짜 : {{ movie?.release_date }}</p>
     <!-- 평점 if 문으로 별로 구현하기 -->
     <p>평점 : {{ movie?.vote_average }}</p>
@@ -55,21 +56,22 @@ export default {
         })
       },
      movieVideo(movie){
-      axios({
-        method:'get',
-        url: `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=8ffb4b999f9e6cb3f99f17488652cc28&language=ko-KR`,
-      })
-      .then(res=>{
-        const video = res.data.results[0].key
-        this.video = video
-        console.log(this.video)
-        // this.$store.state.movieVideo= res.data.results[0]
-        // console.log(this.$store.state.movieVideo)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-    }       
+        axios({
+          method:'get',
+          url: `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=8ffb4b999f9e6cb3f99f17488652cc28&language=ko-KR`,
+        })
+        .then((res) => {
+          const video = res.data.results[0].key
+          this.video = video
+          // this.video = `https://wwww.youtube.com/embed/${video}?autoplay=1`
+          console.log(this.video)
+          // this.$store.state.movieVideo= res.data.results[0]
+          // console.log(this.$store.state.movieVideo)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },   
 
   },
   created() {

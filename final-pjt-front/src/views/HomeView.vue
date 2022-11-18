@@ -9,7 +9,6 @@
 
 
 <script>
-// @ is an alias to /src
 import MovieCard from '@/components/MovieCard'
 
 export default {
@@ -17,7 +16,6 @@ export default {
   components: { MovieCard },
   computed: {
       moviesList() {
-          // console.log(this.$store.state.movieList)
           return this.$store.state.moviesList
       }
   },

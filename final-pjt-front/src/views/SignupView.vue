@@ -32,8 +32,7 @@ export default {
       credentials: {
         username: null,
         password: null,
-        passwordConfir: null,
-        email: null,
+        passwordConfirm: null,
       },
     };
   },

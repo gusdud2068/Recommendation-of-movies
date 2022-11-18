@@ -9,11 +9,9 @@
 </template>
 
 <script>
-// import MovieView from '@/views/MovieView'
 
 export default {
   name: 'MovieCard',
-  // components: { MovieView },
   props: {
     movie: Object
   },
