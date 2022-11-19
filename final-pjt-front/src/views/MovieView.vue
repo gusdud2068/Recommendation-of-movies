@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <h1><span style="color:orange;text-shadow: 4px 0px 0px black; font-size: 30px;">THIS MOVIE IS :   </span>" {{ movie?.title }} "</h1><hr>
+  <div class="user-wrap">
+    <img @click="imgclick()"  :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`" class="backimg" alt="...">
+    <div class="user-text">
+    <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px navy, 1.5px 0 navy, 0 -1.5px navy; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 2px 0px 0px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
-    <img @click="movieVideo(movie)" :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="">
-    <iframe :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0"></iframe>
-    <p>개봉날짜 : {{ movie?.release_date }}</p>
+    <div style="display:flex;">
+    <img @click="movieVideo(movie)" :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
+    
+    <div style="text-align:left;line-height:20px;">
     <!-- 평점 if 문으로 별로 구현하기 -->
-    <p>평점 : {{ movie?.vote_average }}</p>
-    <p v-if="movie?.overview">줄거리 : {{ movie?.overview }}</p>
+    <p style="font-family:'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
+    <p style="font-family:'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
+    <p v-if="movie?.overview" style="font-family:'yang';text-shadow: 1px 1px 0px white"><span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;">{{ movie?.overview }}</span></p>
+    <iframe :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px"></iframe>
+    </div>
+    
+    </div>
     <hr>
       <LatestMovies
         :genres="genres"
       />
-    
+    </div>
   </div>
 </template>
 
@@ -88,5 +96,37 @@ export default {
 </script>
 
 <style>
+.backimg{
+    position:fixed;
+    top: 0%;
+    right:0px;
+    width:100%;
+    height: 100vh;
+    vertical-align: middle;
+    opacity: 0.3;
+    z-index: -1;
+}
+.user-wrap{
+    width:100%;
+    position: relative;
+    
+}
+.user-text{
+    position:absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    /* color: white; */
+    /* display: flex; */
+    height: 100%;
+    /* margin-top: 100px; */
+    z-index: 2;
+}
+.sparkling{
+  transform: rotateY( 180deg ) ; 
+}
+.logo2{
+    z-index: 2;
+}
 
 </style>

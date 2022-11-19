@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <br>
-  <img src="@/assets/logo.png" width="50%">
+  <br>
+  <hr class="hrstyle">
+  <div class="logo2">
+  <img src="@/assets/logo2.png" width="100%" >
+  <hr class="hrstyle">
+  </div>
     <nav>
-      <nav class="navbar navbar-expand-lg" style="background-color:white;text-shadow: 2px 1px 0px black; text-decoration-line: underline;">
+      <nav class="navbar navbar-expand-lg" style="background-color:white;text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2; background-color:opacity;">
     <div class="container-fluid">
+    <img src="@/assets/sun.png" width="5%">
     <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -88,7 +93,7 @@ export default {
 }
 
 nav {
-  padding: 30px;
+  padding: 10px;
 }
 
 nav a {
@@ -107,5 +112,23 @@ nav a.router-link-exact-active {
   font-family:'VITRO CORE TTF';
   src: url('assets/VITRO CORE TTF.ttf') format('truetype');
   font-weight: 400;
+}
+@font-face {
+  font-family:'yang';
+  src: url('assets/yang.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family:'overview';
+  src: url('assets/overview.ttf') format('truetype');
+  font-weight: 400;
+}
+.hrstyle{
+  margin: auto;
+  border: 0;
+  width: 90%;
+  height: 3px;
+  background: white;
+  z-index: 2;
 }
 </style>
