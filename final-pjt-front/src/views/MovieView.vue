@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ movie?.title }}</h1>
+    <h1><span style="color:orange;text-shadow: 4px 0px 0px black; font-size: 30px;">THIS MOVIE IS :   </span>" {{ movie?.title }} "</h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
     <img @click="movieVideo(movie)" :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="">
     <iframe :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0"></iframe>
@@ -8,9 +8,11 @@
     <!-- 평점 if 문으로 별로 구현하기 -->
     <p>평점 : {{ movie?.vote_average }}</p>
     <p v-if="movie?.overview">줄거리 : {{ movie?.overview }}</p>
+    <hr>
       <LatestMovies
         :genres="genres"
       />
+    
   </div>
 </template>
 

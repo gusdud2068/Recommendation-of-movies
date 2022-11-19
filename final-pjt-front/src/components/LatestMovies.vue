@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>당신의 취향을 저격할 상영중인 영화</h1>
+  
+    <h1>당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="2%" style="float:center">취향<img src="@/assets/sparkling.gif" width="2%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
       <span v-for="movie in getRecommendedList" :key="movie.id">
         <div @click="GoCommunity(movie)" class="card text-bg-dark">
         <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img" alt="...">
@@ -70,5 +71,7 @@ export default {
 </script>
 
 <style>
-
+h1{
+  font-family:'VITRO CORE TTF';
+}
 </style>

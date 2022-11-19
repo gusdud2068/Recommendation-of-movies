@@ -33,6 +33,7 @@ export default {
   padding: 0;
   overflow: hidden;
   border-radius: 20px;
+  font-family:'VITRO CORE TTF';
 
 }
 .card-img-top{

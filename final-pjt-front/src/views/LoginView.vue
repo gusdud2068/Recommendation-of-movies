@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h1>Login</h1>
+  <div class='login'>
+    <div class="mainlogin">
+    <hr class="line">
+    <h1 style="color:black;text-align:center">Login</h1>
+    <hr class="line">
     <div>
-      <label for="username">사용자 이름: </label>
+      <label for="username" style="font-family:VITRO CORE TTF; color:black;">사용자 이름: </label>
       <input type="text" id="username" v-model="credentials.username" />
     </div>
     <div>
-      <label for="password">비밀번호: </label>
+      <label for="password" style="font-family:VITRO CORE TTF; color:black;">비밀번호: </label>
       <input
         type="password"
         id="password"
@@ -14,7 +17,8 @@
         @keyup.enter="login"
       />
     </div>
-    <button @click="login">로그인</button>
+    <button class="btn btn-warning" @click="login" style="font-family:VITRO CORE TTF;color:black;">로그인</button>
+  </div>
   </div>
 </template>
 
@@ -50,3 +54,32 @@ export default {
   },
 };
 </script>
+
+<style>
+  .login{
+    margin-top: 55px;
+    height: 100vh;
+    color: white;
+    position: relative;
+  }
+  .mainlogin{
+    line-height: 30px;
+    position:absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    text-align: left;
+    width: 50%;
+  }
+  input{
+    width: 100%;
+
+  }
+  .btn{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    background-color: orange;
+  }
+
+</style>

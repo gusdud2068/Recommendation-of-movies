@@ -1,9 +1,11 @@
 <template>
   <div id="app">
+    <br>
+  <img src="@/assets/logo.png" width="50%">
     <nav>
-      <nav class="navbar navbar-expand-lg" style="background-color:#e3f2fd; color:white;">
+      <nav class="navbar navbar-expand-lg" style="background-color:white;text-shadow: 2px 1px 0px black; text-decoration-line: underline;">
     <div class="container-fluid">
-    <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">Movie</router-link>
+    <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -78,7 +80,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif, VITRO CORE TTF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -91,10 +93,19 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: orange;
+  font-family:'VITRO CORE TTF';
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: orange
+}
+.v-application {
+  font-family: 'VITRO CORE TTF', sans-serif !important;
+}
+@font-face {
+  font-family:'VITRO CORE TTF';
+  src: url('assets/VITRO CORE TTF.ttf') format('truetype');
+  font-weight: 400;
 }
 </style>

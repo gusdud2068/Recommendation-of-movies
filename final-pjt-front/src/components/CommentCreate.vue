@@ -4,7 +4,7 @@
     <form @submit.prevent="createComment">
       <label for="content">내용 : </label>
       <textarea id="content" cols="80" rows="3" v-model="comment_content"></textarea><br>
-      <input type="submit" id="submit">  
+      <input class="btn btn-warning" type="submit" id="submit" style="width:20%">  
     </form>
   </div>
 </template>
