@@ -36,10 +36,13 @@ export default {
           content: comment_content,
         },
         headers: {
+          // 수정??해야하는지 생각해보기
           Authorization: `Token ${this.$store.state.token}`
         }
       })
         .then(() => {
+          this.comment_content = null
+          this.$store.dispatch('getComments', this.latestmovie)
           // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
         })
         .catch((err) => {

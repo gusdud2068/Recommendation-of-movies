@@ -24,13 +24,19 @@ export default new Vuex.Store({
     getComments(context, movie_id) {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/comments/${movie_id}/`,
+        url: `${API_URL}/movies/comments/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
         .then((res) => {
-          context.commit('GET_COMMENTS', res.data)
+          // for (let i=0; i < res.data.length; i++) {
+          const movie_comment = res.data.filter((movie) => {
+            return movie.movie === Number(movie_id)
+          })
+          // console.log(movie_comment)
+          // }
+          context.commit('GET_COMMENTS', movie_comment)
         })
         .catch((err) => {
           console.log(err)

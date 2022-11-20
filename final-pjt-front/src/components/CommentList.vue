@@ -26,7 +26,8 @@ export default {
     comments() {
       // console.log(this.$store.state.comments)
       // console.log(this.$store.state.comments.comments)
-      return this.$store.state.comments.comments
+      // console.log(this.$store.state.comments)
+      return this.$store.state.comments
     }
   }
 }

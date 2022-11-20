@@ -26,7 +26,9 @@ def now(request):
 def movie_comments(request, movie_pk):
     movie = Now_Movie.objects.get(pk=movie_pk)
     serializer = LatestMovieSerializer(movie)
+    print(serializer)
     comments = movie.comments_set.all()
+    print(comments)
     return Response ({'Now_movie': serializer.data,'comments': comments,})
 
 @api_view(['GET'])
