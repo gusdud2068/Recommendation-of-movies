@@ -22,11 +22,12 @@ export default new Vuex.Store({
   actions: {
     // 최신영화에 달린 댓글 목록 가져오기
     getComments(context, movie_id) {
+      let token = localStorage.getItem('jwt')
       axios({
         method: 'get',
         url: `${API_URL}/movies/comments/`,
         headers: {
-          Authorization: `Token ${context.state.token}`
+          Authorization: `Bearer ${token}`
         }
       })
         .then((res) => {

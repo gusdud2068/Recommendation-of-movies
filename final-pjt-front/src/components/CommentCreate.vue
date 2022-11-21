@@ -29,6 +29,7 @@ export default {
         alert('댓글을 입력해주세요')
         return
       }
+      let token = localStorage.getItem('jwt')
       axios({
         method: "post",
         url: `http://127.0.0.1:8000/movies/movie/${this.latestmovie}/comments/`,
@@ -36,12 +37,12 @@ export default {
           content: comment_content,
         },
         headers: {
-          // 수정??해야하는지 생각해보기
-          Authorization: `Token ${this.$store.state.token}`
+          Authorization: `Bearer ${token}`
         }
       })
         .then(() => {
           this.comment_content = null
+          // ???/?
           this.$store.dispatch('getComments', this.latestmovie)
           // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
         })

@@ -65,8 +65,9 @@ def comment_create(request, movie_pk):
     # article = Article.objects.get(pk=article_pk)
     movie = get_object_or_404(Now_Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
+    user = request.user
     if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie)
+        serializer.save(movie=movie, user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

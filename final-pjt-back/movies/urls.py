@@ -12,6 +12,6 @@ path('',views.index,name='index'),
     # path('comments/<int:comment_pk>/', views.comment_detail),
     # 최신영화에 댓글 생성
     path('movie/<int:movie_pk>/comments/', views.comment_create),
-    path('comments/<int:comment_pk>/like', views.like),
+    path('comments/<int:comment_pk>/like/', views.like),
    
 ]
