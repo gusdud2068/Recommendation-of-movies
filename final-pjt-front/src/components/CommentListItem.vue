@@ -2,6 +2,8 @@
   <div>
     <p>작성자: {{ comment.username }}</p>
     <p>내용: {{ comment.content }}</p>
+    <b-button @click="updateComment">수정</b-button>
+    <b-button @click="deleteComment">삭제</b-button>
     <p>{{ comment.like_users }}</p>
     <div v-if="isLiked">
       <button @click="likesChange()">좋아요 취소</button>
@@ -29,6 +31,12 @@ export default {
     }
   },
   methods: {
+    updateComment() {
+
+    },
+    deleteComment() {
+
+    },
     likesChange() {
       // console.log(a)
       let token = localStorage.getItem('jwt')

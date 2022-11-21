@@ -1,15 +1,21 @@
 <template>
   <div>
-    <h1>최신영화 트레일러, 댓글</h1>
-    <iframe v-show="content" :src="`https://www.youtube.com/embed/${video}?`" frameborder="0"></iframe>
-    <hr>
-    <CommentCreate
-      :latestmovie="latestmovie"
-    />
-    <hr>
-    <CommentList
-      :latestmovie="latestmovie"
-    />
+    <!-- 새로고침하면 제목사라짐,,., -->
+    <h1>{{ getTitle.title }}</h1>
+    <div style="display:flex; width: 80%; margin: auto; ">
+      <iframe v-if="video" style="margin: auto;" v-show="content" :src="`https://www.youtube.com/embed/${video}?`" frameborder="0" width="1000" height="500"></iframe>
+      <img v-else :src="`https://image.tmdb.org/t/p/original/${getTitle?.poster_path}`" alt="" style="width:700px; height: 900px;">
+      <div>
+        <CommentCreate
+        :latestmovie="latestmovie"
+        />
+        <hr>
+        <CommentList
+        :latestmovie="latestmovie"
+        />
+      </div>
+
+    </div>
 
   </div>
 </template>
@@ -21,6 +27,11 @@ import CommentList from '@/components/CommentList'
 
 export default {
   name: 'CommunityView',
+  computed: {
+    getTitle() {
+      return this.$store.state.recommendname
+    }
+  },
   components: { CommentCreate, CommentList },
   data() {
     return {
@@ -51,9 +62,6 @@ export default {
       this.$store.dispatch('getComments', this.latestmovie)
     }
   },
-  computed: {
-
-  },
   created() {
     this.getMovie()
   },
@@ -66,5 +74,20 @@ export default {
 </script>
 
 <style>
-
+.user-wrap1{
+    width:100%;
+    position: relative;
+    
+}
+.user-text1{
+    position:absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    /* color: white; */
+    display: flex;
+    height: 100%;
+    /* margin-top: 100px; */
+    z-index: 2;
+}
 </style>

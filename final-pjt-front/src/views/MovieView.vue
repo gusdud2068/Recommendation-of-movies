@@ -5,21 +5,26 @@
     <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px navy, 1.5px 0 navy, 0 -1.5px navy; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 2px 0px 0px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
     <div style="display:flex;">
-    <img @click="movieVideo(movie)" :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
+    <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
     
-    <div style="text-align:left;line-height:20px;">
-    <!-- 평점 if 문으로 별로 구현하기 -->
-    <p style="font-family:'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
-    <p style="font-family:'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
-    <p v-if="movie?.overview" style="font-family:'yang';text-shadow: 1px 1px 0px white"><span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;">{{ movie?.overview }}</span></p>
-    <iframe :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px"></iframe>
+    <div class="all">
+      <div style="text-align:left;line-height:20px;">
+      <!-- 평점 if 문으로 별로 구현하기 -->
+      <p style="font-family: 'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
+      <p style="font-family: 'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
+      <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 1px 0px white"><span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span></p>
+      <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px"></iframe>
+      </div>
     </div>
     
-    </div>
-    <hr>
-      <LatestMovies
-        :genres="genres"
-      />
+  </div>
+  <hr>
+  <h1 style="text-shadow: 3px 0px 0px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
+  <div class="movie_list">
+    <LatestMovies
+      :genres="genres"
+    />
+  </div>
     </div>
   </div>
 </template>
@@ -87,15 +92,18 @@ export default {
   created() {
     this.getDetail()
   },
-  // watch: {
-  //   movieTrailer() {
-  //     this.movieVideo(this.movie)
-  //   }
-  // }
+  watch: {
+    movie() {
+      this.movieVideo(this.movie)
+    }
+  }
 }
 </script>
 
 <style>
+h1{
+  font-family:'VITRO CORE TTF';
+}
 .backimg{
     position:fixed;
     top: 0%;
@@ -127,6 +135,21 @@ export default {
 }
 .logo2{
     z-index: 2;
+}
+.all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 옆으로 스크롤 안돼용 */
+.movie_list {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    height: 450px;;
+    overflow-y:hidden;
+    white-space: nowrap;
 }
 
 </style>
