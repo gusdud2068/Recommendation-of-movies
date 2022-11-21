@@ -1,17 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
+  plugins: [
+    createPersistedState({
+      // paths: [""]
+    })
+  ],
   state: {
     moviesList: [],
     movieVideo: [],
     comments: [],
-    recommendname: [],
+    // recommendname: [],
+    latestmovie: [],
   },
   getters: {
   },
@@ -38,6 +45,7 @@ export default new Vuex.Store({
           })
           // console.log(movie_comment)
           // }
+          console.log(movie_comment)
           context.commit('GET_COMMENTS', movie_comment)
         })
         .catch((err) => {

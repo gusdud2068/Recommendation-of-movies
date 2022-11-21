@@ -48,7 +48,8 @@ export default {
         })
     },
     GoCommunity(movie) {
-      this.$store.state.recommendname = movie
+      this.$store.state.latestmovie = movie
+      this.$store.dispatch('getComments', movie.id)
       this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${movie.id}`}})
 
     }

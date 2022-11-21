@@ -24,7 +24,7 @@ export default {
   computed: {
     // store 에서 해당 영화의 comments 가져오기
     comments() {
-      console.log(this.$store.state.comments)
+      // console.log(this.$store.state.comments)
       return this.$store.state.comments
     }
   }

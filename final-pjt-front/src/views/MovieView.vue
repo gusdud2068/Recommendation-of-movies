@@ -65,7 +65,7 @@ export default {
           })
           const genres = detail[0].genres
           this.genres = genres
-          console.log(this.genres)
+          // console.log(this.genres)
           this.movie = detail[0]
           // console.log(this.movie)
         })
@@ -79,7 +79,7 @@ export default {
           const video = res.data.results[0].key
           this.video = video
           // this.video = `https://wwww.youtube.com/embed/${video}?autoplay=1`
-          console.log(this.video)
+          // console.log(this.video)
           // this.$store.state.movieVideo= res.data.results[0]
           // console.log(this.$store.state.movieVideo)
         })

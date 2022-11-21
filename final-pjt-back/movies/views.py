@@ -36,6 +36,7 @@ def comment_list(request):
     if request.method == 'GET':
         # comments = Comments.objects.all()
         comments = get_list_or_404(Comments)
+        # print(comments)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
