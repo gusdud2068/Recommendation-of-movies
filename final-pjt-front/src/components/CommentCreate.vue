@@ -47,6 +47,7 @@ export default {
           // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
         })
         .catch((err) => {
+          alert('로그인 후 이용 가능합니다.')
           console.error(err);
         });
       }

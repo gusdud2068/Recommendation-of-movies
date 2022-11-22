@@ -5,6 +5,7 @@ import MovieView from '../views/MovieView.vue'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
 import CommunityView from '@/views/CommunityView'
+import NotFound404 from '@/views/NotFound404'
 
 
 Vue.use(VueRouter)
@@ -14,6 +15,21 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/accounts/signup',
+    name: 'Signup',
+    component: SignupView,
+  },
+  {
+    path: '/accounts/login',
+    name: 'Login',
+    component: LoginView,
+  },
+  {
+    path: '/404-not-found',
+    name: 'NotFound404',
+    component: NotFound404
   },
   {
     path: '/movie/:id',
@@ -26,14 +42,8 @@ const routes = [
     component: CommunityView,
   },
   {
-    path: '/accounts/signup',
-    name: 'Signup',
-    component: SignupView,
-  },
-  {
-    path: '/accounts/login',
-    name: 'Login',
-    component: LoginView,
+    path: '*',
+    redirect: { name: 'NotFound404' }
   },
 
 ]
