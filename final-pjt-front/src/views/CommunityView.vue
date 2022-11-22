@@ -57,16 +57,16 @@ export default {
         })
         .then((res) => {
           if (res.data.results) {
-            console.log(res.data.results)
             const video = res.data.results[0].key
             this.video = video
             this.content = true
           }
-          // this.$store.dispatch('getComments', this.latestmovie)
         })
         .catch((err) => {
           console.log(err)
         })
+        // console.log(this.latestmovie)
+      this.$store.dispatch('getComments', this.latestmovie)
     },
     // 댓글이 없을 때 404 에러 발생, 댓글 작성 후에는 괜찮음
     // 해결 필요!

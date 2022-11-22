@@ -68,13 +68,7 @@ export default {
                 }
             })
             .then(() => {
-                // 댓글 수정 알림이 두번 뜸 문제 발생~!
-                // alert('댓글이 수정되었습니다.')
-
-                // 어떻게 해야 할까.. 아예 알림창 없앨깡..
-                // 새로고침으로 해결!
-                // **********************
-                // 새로고침 없이는 방법 없나
+                // 댓글 수정 후 업데이트가 안됨
                 // this.closePopup()
                 // this.$store.dispatch('getComments', this.latestmovie)
                 this.$emit('update-comment')

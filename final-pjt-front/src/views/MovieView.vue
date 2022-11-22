@@ -69,6 +69,11 @@ export default {
           this.movie = detail[0]
           // console.log(this.movie)
         })
+        .catch((err) => {
+          console.log(err)
+          // 없다면 에러페이지로 이동
+          this.$router.push({ name: "NotFound404" })
+        })
       },
      movieVideo(movie){
         axios({

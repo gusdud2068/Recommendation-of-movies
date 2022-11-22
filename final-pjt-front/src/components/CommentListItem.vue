@@ -58,7 +58,8 @@ export default {
     // 같은 댓글 연속으로 여러 번 수정 시 중간에 댓글 내용이 업데이트가 안됨
     updateComment() {
       console.log(this.comment)
-      this.$store.dispatch('getComments', this.latestmovie)
+      console.log(this.latestmovie)
+      // this.$store.dispatch('getComments', this.latestmovie)
     },
     // 댓글 삭제
     // 댓글 삭제 후 댓글 목록 다시 업데이트 하려면,,,?
@@ -74,7 +75,7 @@ export default {
             .then(() => {
                 // this.$emit('update-commentlist')
                 // store 에서 댓글 다시 가져오기 실행??
-                // 해결!!!
+                // 댓글이 하나 남은 것을 삭제 할때 업데이트 안됨
                 this.$store.dispatch('getComments', this.latestmovie)
                 alert('댓글이 삭제되었습니다.')
             })
