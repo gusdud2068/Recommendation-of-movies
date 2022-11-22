@@ -35,7 +35,7 @@ export default {
       })
         .then((res) => {
           const random_index = Math.floor(Math.random() * (this.genres.length))
-          console.log(this.genres[random_index])
+          // console.log(this.genres[random_index])
           const genre = this.genres[random_index]
           const recommend_movies = res.data.filter((movie) => {
             return movie.genres.includes(genre)

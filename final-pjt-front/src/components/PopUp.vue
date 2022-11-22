@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>팝업창</h1>
-    <form @submit.prevent="createComment">
+        <img @click="closePopup()" src="../assets/close-img.png" alt="" width="30px" height="30px">
+    <form @submit.prevent="updateComment">
       <label for="content">내용 : </label>
       <textarea id="content" cols="80" rows="3" v-model="comment_content"></textarea><br>
-      <!-- 수정 버튼 클릭시 axios 로 수정한 데이터 제출 -->
       <input @click="updateComment" class="btn btn-warning" type="submit" id="submit" style="width:20%" value="수정">  
     </form>
   </div>
@@ -22,28 +22,34 @@ export default {
     },
     props: {
         comment: Object,
+        latestmovie: String,
     },
     methods: {
+        // 팝업 창 닫기
+        closePopup() {
+            this.$emit('close-popup')
+        },
         // 댓글 가져오기
-        // created ? mounted ? 생각해보기
+        // created ? mounted ? 생각해보기 (created 실행해보기)
         getComment() {
             let token = localStorage.getItem('jwt')
             axios({
                 method: 'get',
                 url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
                 headers: {
-                Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             })
-                .then((res) => {
-                    console.log(res.data)
-                    this.comment_content = res.data.content
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+            .then((res) => {
+                console.log(res.data)
+                this.comment_content = res.data.content
+            })
+            .catch((err) => {
+                console.log(err)
+            })
         },
         // 댓글 수정
+        // 수정 후 댓글 목록 다시 불러와야 함!
         updateComment() {
             const comment_content = this.comment_content
             if (!comment_content) {
@@ -55,46 +61,44 @@ export default {
                 method: "put",
                 url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
                 data: {
-                content: comment_content,
+                    content: comment_content,
                 },
                 headers: {
-                Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             })
-                .then(() => {
-                alert('댓글이 수정되었습니다.')
-                // ???/?
+            .then(() => {
+                // 댓글 수정 알림이 두번 뜸 문제 발생~!
+                // alert('댓글이 수정되었습니다.')
 
-                // 수정 완료 후 store 에 댓글 저장해야 댓글 목록에 나오는 지 확인해보기
+                // 어떻게 해야 할까.. 아예 알림창 없앨깡..
+                // 새로고침으로 해결!
+                // **********************
+                // 새로고침 없이는 방법 없나
+                // this.closePopup()
                 // this.$store.dispatch('getComments', this.latestmovie)
-
+                this.$emit('update-comment')
+                location.reload();
+                // ???/?
+                
                 // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
-                })
-                .catch((err) => {
-                console.log(err);
-                });
-        },
-        // 댓글 삭제
-        deleteComment() {
-            let token = localStorage.getItem('jwt')
-            axios({
-                method: "delete",
-                url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
-                headers: {
-                Authorization: `Bearer ${token}`
-                }
             })
-                .then(() => {
-                    alert('댓글이 삭제되었습니다.')
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
-    }
+            .catch((err) => {
+                console.log(err);
+            });
+        },
+        
+    },
+    created() {
+        this.getComment()
+    },
 }
 </script>
 
 <style>
+/* .close-image {
+    width: 10%;
+    height: 10%;
+} */
 
 </style>
