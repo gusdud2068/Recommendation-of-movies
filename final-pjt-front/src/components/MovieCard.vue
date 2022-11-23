@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" id="cardhover">
     <img @click="movieDetail(movie)" :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ movie.title }}</h5>
@@ -34,6 +34,11 @@ export default {
   border-radius: 20px;
   font-family:'VITRO CORE TTF';
   /* opacity: 1; */
+}
+#cardhover:hover {
+  border: solid 1px black;
+  overflow: hidden;
+  transition-delay: 2ms;
 }
 .card-img-top{
   height: 700px;
