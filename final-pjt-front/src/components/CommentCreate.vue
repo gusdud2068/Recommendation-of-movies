@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>댓글 생성</h1>
+    <h1 style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">댓글</h1>
     <form @submit.prevent="createComment">
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="80" rows="3" v-model="comment_content"></textarea><br>
-      <input class="btn btn-warning" type="submit" id="submit" style="width:20%">  
+      <label for="content" style="font-family:'yang';font-weight: light; text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white; "> 댓글을 남겨주세요: </label>
+      <textarea class="toast fade show" id="content" cols="80" rows="3" v-model="comment_content" style=""></textarea><br>
+      <input class="btn btn-warning" type="submit" id="submit" style="width:20%; height: 10%;">  
     </form>
   </div>
 </template>

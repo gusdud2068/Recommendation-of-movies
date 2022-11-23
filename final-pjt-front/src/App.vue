@@ -2,20 +2,20 @@
   <div id="app">
   <br>
   <hr class="hrstyle">
-  <div class="logo2">
+  <div class="logo2 back">
   <img src="@/assets/logo2.png" width="100%" >
   <hr class="hrstyle">
   </div>
     <nav>
       <nav class="navbar navbar-expand-lg" style="background-color:white;text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2; background-color:opacity;">
     <div class="container-fluid">
-    <img src="@/assets/sun.png" width="5%">
+    <img src="@/assets/sun.png" width="70px" height="30px">
     <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- <li class="nav-item">
           <router-link class="nav-link" @click.native="moviesList" :to="{ name: 'random' }">Random</router-link>
         </li> -->
@@ -131,5 +131,8 @@ nav a.router-link-exact-active {
   height: 3px;
   background: white;
   z-index: 2;
+}
+.back{
+  background-color: rgba( 255, 255, 255, 0.3 );
 }
 </style>

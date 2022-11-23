@@ -1,12 +1,15 @@
 <template>
-  <div>
+  <div class="user-wrap1">
     <!-- 새로고침하면 제목사라짐,,., 해결 완.-->
     <!-- store 에 저장할 때 vuex-persistedstate 를 이용해서 store의 state 초기화 방지 -->
-    <h1>{{ getMovie.title }}</h1>
-    <div style="display:flex; width: 80%; margin: auto; ">
-      <iframe v-if="video" style="margin: auto;" v-show="content" :src="`https://www.youtube.com/embed/${video}?`" frameborder="0" width="1000" height="500"></iframe>
-      <img v-else :src="`https://image.tmdb.org/t/p/original/${getMovie.poster_path}`" alt="" style="width:700px; height: 900px;">
-      <div>
+    <img @click="imgclick()"  :src="`https://image.tmdb.org/t/p/original/${getMovie?.backdrop_path}`" class="backimg1" alt="...">
+    <div class="all1">
+    <h1 class="font" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white;" ><img src="@/assets/sparkling.gif" width="5%" class="sparkling">{{ getMovie.title }}<img src="@/assets/sparkling.gif" width="5%" class="sparkling"></h1>
+    <div class="user-text1">
+    <div style="display:flex; width: 80%; margin-top: 60px; ">
+      <iframe v-if="video" class="video" style="margin: auto;" v-show="content" :src="`https://www.youtube.com/embed/${video}?`" frameborder="0" width="1200" height="500"></iframe>
+      <img class="video" v-else :src="`https://image.tmdb.org/t/p/original/${getMovie.poster_path}`" alt="" style="width:700px; height: 900px;">
+      <div style="margin-left:30px">
         <CommentCreate
         :latestmovie="latestmovie"
         />
@@ -15,9 +18,9 @@
         :latestmovie="latestmovie"
         />
       </div>
-
+      </div>
     </div>
-
+    </div>
   </div>
 </template>
 
@@ -102,7 +105,38 @@ export default {
     /* color: white; */
     display: flex;
     height: 100%;
-    /* margin-top: 100px; */
+    margin-top: 50px;
+    justify-content: center;
     z-index: 2;
+}
+.video{
+  box-shadow: 5px 5px 5px;
+  margin-bottom: 80px !important;
+  z-index: 1;
+}
+.font{
+  
+  margin-bottom: 80px;
+  border: 2;
+  width: 90%;
+  height: 3px;
+  /* background:; */
+  /* z-index: 2; */
+}
+.backimg1{
+    position:fixed;
+    top: 0%;
+    right:0px;
+    width:100%;
+    height: 100vh;
+    vertical-align: middle;
+    /* opacity: 0.3; */
+    filter: brightness(60%);
+    z-index: -100;
+}
+.all1{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
 }
 </style>

@@ -2,24 +2,29 @@
   <div class="user-wrap">
     <img @click="imgclick()"  :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`" class="backimg" alt="...">
     <div class="user-text">
-    <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px navy, 1.5px 0 navy, 0 -1.5px navy; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 2px 0px 0px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
+    <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
     <div style="display:flex;">
     <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
     
     <div class="all">
-      <div style="text-align:left;line-height:20px;">
+      <div class="back1">
+        <div style="text-align:left;line-height:20px;">
       <!-- 평점 if 문으로 별로 구현하기 -->
-      <p style="font-family: 'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
-      <p style="font-family: 'yang';text-shadow: 2px 0px 0px white"><span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
-      <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 1px 0px white"><span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span></p>
-      <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px"></iframe>
+      <br>
+      <p style="font-family: 'yang';text-shadow: 1px 0px 0px white; "> <span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
+      <p style="font-family: 'yang';text-shadow: 1px 0px 0px white"> <span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
+      <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 0px 0px white;"> <span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span></p>
       </div>
+    </div>
+    <div>
+      <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px ;margin-top: 20px; box-shadow: 2px;"></iframe>
+    </div>
     </div>
     
   </div>
   <hr>
-  <h1 style="text-shadow: 3px 0px 0px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
+  <h1 style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
   <div class="movie_list">
     <LatestMovies
       :genres="genres"
@@ -116,12 +121,14 @@ h1{
     width:100%;
     height: 100vh;
     vertical-align: middle;
-    opacity: 0.3;
+    /* opacity: 0.3; */
+    filter: brightness(60%);
     z-index: -1;
 }
 .user-wrap{
     width:100%;
     position: relative;
+    
     
 }
 .user-text{
@@ -134,7 +141,9 @@ h1{
     height: 100%;
     /* margin-top: 100px; */
     z-index: 2;
+    
 }
+
 .sparkling{
   transform: rotateY( 180deg ) ; 
 }
@@ -145,6 +154,12 @@ h1{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  }
+
+.back1{
+  background-color: rgba( 255, 255, 255, 0.65 );
+  border-radius: 20px;
+  padding: 20px;
 }
 
 /* 옆으로 스크롤 안돼용 */
@@ -155,6 +170,14 @@ h1{
     height: 450px;;
     overflow-y:hidden;
     white-space: nowrap;
+}
+.ex {
+    font-size: 60px;
+    background: linear-gradient(to right top, black, #ffa69e);
+    color: transparent;
+    -webkit-background-clip: text;
+    /* color:orange; */
+    text-shadow: 2px 2px 2px orange;
 }
 
 </style>
