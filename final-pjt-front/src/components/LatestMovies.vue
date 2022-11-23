@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div style="display:flex">
       <div v-for="movie in getRecommendedList" :key="movie.id">
         <span @click="GoCommunity(movie)" class="card text-bg-dark">
-        <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img" alt="...">
+        <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img" style="height:400px;" alt="...">
         <div class="card-img-overlay">
           <!-- css 로 제목 잘보이게 만들기! -->
           <!-- 카드 margin 음수로 줘보기 -->
-          <h5 class="card-title" style="font-family:'yang'; text-shadow: 2px 2px 2px navy;">{{ movie.title }}</h5>
+          <!-- movie.title CSS -->
+          <h5 class="card-title" style="font-family:'yang';  text-shadow: 2px 2px 2px navy; background-color: rgba( 0, 0, 0, 0.3 ); padding: 2px;">{{ movie.title }}</h5>
         </div>
       </span>
     </div>

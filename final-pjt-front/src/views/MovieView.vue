@@ -165,19 +165,22 @@ h1{
 /* 옆으로 스크롤 안돼용 */
 .movie_list {
     display: flex;
+    width: 1000px;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    height: 450px;;
+    height: 450px;
     overflow-y:hidden;
     white-space: nowrap;
+    
+    
 }
-.ex {
-    font-size: 60px;
-    background: linear-gradient(to right top, black, #ffa69e);
-    color: transparent;
-    -webkit-background-clip: text;
-    /* color:orange; */
-    text-shadow: 2px 2px 2px orange;
+
+.movie_list::-webkit-scrollbar{
+  opacity: 0;
+    
+}
+.movie_list::-webkit-scrollbar-thumb{
+    background-color: orange;
 }
 
 </style>

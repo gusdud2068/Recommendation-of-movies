@@ -7,7 +7,7 @@
   <hr class="hrstyle">
   </div>
     <nav>
-      <nav class="navbar navbar-expand-lg" style="background-color:white;text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2; background-color:opacity;">
+      <nav class="navbar navbar-expand-lg" style="text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2;">
     <div class="container-fluid">
     <img src="@/assets/sun.png" width="70px" height="30px">
     <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>

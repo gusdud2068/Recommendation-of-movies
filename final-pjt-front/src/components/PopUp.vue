@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h1>팝업창</h1>
-        <img @click="closePopup()" src="../assets/close-img.png" alt="" width="30px" height="30px">
+    <img @click="closePopup()" src="../assets/close-img.png" alt="" width="10px" height="10px" style="float: right;">
     <form @submit.prevent="updateComment">
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="80" rows="3" v-model="comment_content"></textarea><br>
-      <input @click="updateComment" class="btn btn-warning" type="submit" id="submit" style="width:20%" value="수정">  
+      <label for="content"></label>
+      <textarea id="content" cols="30" rows="3" v-model="comment_content"></textarea><br>
+      <input @click="updateComment" class="btn btn-warning" type="submit" id="submit"  style="width:20%; height: 10%;" value="수정">  
     </form>
   </div>
 </template>

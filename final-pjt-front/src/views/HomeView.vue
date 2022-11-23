@@ -3,6 +3,7 @@
       <MovieCard
           v-for="movie in moviesList" :key="movie.id"
           :movie="movie"
+          class="col-3"
       />
     </div>
 </template>
@@ -24,8 +25,7 @@ export default {
 
 <style>
 .center {
-  margin-left: 140px;
-  margin-right: 90px;
+  margin-left: 300px;
 }
 
 </style>

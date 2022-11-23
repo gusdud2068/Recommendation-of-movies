@@ -27,13 +27,16 @@ export default {
 <style>
 .card{
   float:left;
-  width: 30%;
+  width: 300px;
+  height: 400px;
   margin: 10px;
-  padding: 0;
-  overflow: hidden;
+  padding: 0px;
+  overflow:auto;
   border-radius: 20px;
   font-family:'VITRO CORE TTF';
   /* opacity: 1; */
+  align-items:flex-start;
+  flex-wrap:wrap;
 }
 #cardhover:hover {
   border: solid 1px black;
@@ -49,9 +52,10 @@ export default {
   display : flex;
   justify-content : center;
   align-items : center;
+  float: left;
 }
 .card-title{
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 </style>
