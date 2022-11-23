@@ -19,6 +19,7 @@ export default new Vuex.Store({
     comments: [],
     // recommendname: [],
     latestmovie: [],
+    searchList: [],
   },
   getters: {
   },
@@ -26,6 +27,10 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments) {
       state.comments = comments
     },
+
+    SAVE_SEARCH_RESULT(state, result) {
+      state.searchList = result
+    }
   },
   actions: {
     // 최신영화에 달린 댓글 목록 가져오기
@@ -52,6 +57,9 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    save_search_result(context, result) {
+      context.commit("SAVE_SEARCH_RESULT", result)
+    }
   },
   modules: {
   }

@@ -46,11 +46,12 @@ export default {
 .card-img-top{
   height: 700px;
 }
-/* 반응형 페이지에 따라 제목이 두 줄로 넘어가도 크기가 달라지지 않도록 body 크기 늘려줌 / 제목은 정가운데 배열로 변경 */
+
 .card-body {
   height: 90px;
   display : flex;
   justify-content : center;
+  margin: auto;
   align-items : center;
   float: left;
 }

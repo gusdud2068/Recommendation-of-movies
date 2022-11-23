@@ -16,12 +16,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <router-link class="nav-link" @click.native="moviesList" :to="{ name: 'random' }">Random</router-link>
-        </li> -->
-        <!-- <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'watchlist' }">WatchList</router-link>
-        </li> -->
       </ul>
     <span v-show="isLoggedIn">
       <router-link @click.native="logout" to="#">Logout</router-link>

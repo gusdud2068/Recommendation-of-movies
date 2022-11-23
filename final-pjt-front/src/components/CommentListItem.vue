@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="comment">
     <div class="toast-container position-static">
     <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
@@ -10,7 +10,7 @@
       </div>
       <div class="toast-body">
     <div style="margin-top: 10px">
-      <p>작성자: {{ comment.username }}</p>
+      <!-- <p>작성자: {{ comment.username }}</p> -->
       <p>내용: {{ comment.content }}</p>
       <input @click="openPopup()" class="btn btn-warning" style="width:20%; height: 10%;" type="submit" id="update" value="수정">
       <!-- <input @click="deleteComment" class="btn btn-warning" style="width:20%; height: 10%;" type="submit" id="submit" value="삭제"> -->

@@ -5,6 +5,7 @@ import MovieView from '../views/MovieView.vue'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
 import CommunityView from '@/views/CommunityView'
+import SearchListView from '@/views/SearchListView'
 import NotFound404 from '@/views/NotFound404'
 
 
@@ -20,6 +21,11 @@ const routes = [
     path: '/accounts/signup',
     name: 'Signup',
     component: SignupView,
+  },
+  {
+    path: '/search',
+    name: 'SearchList',
+    component: SearchListView,
   },
   {
     path: '/accounts/login',
