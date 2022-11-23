@@ -27,17 +27,26 @@ export default {
 <style>
 .card{
   float:left;
-  height: 1000px;
   width: 30%;
   margin: 10px;
   padding: 0;
   overflow: hidden;
   border-radius: 20px;
   font-family:'VITRO CORE TTF';
-  opacity: 1;
+  /* opacity: 1; */
 }
 .card-img-top{
   height: 700px;
+}
+/* 반응형 페이지에 따라 제목이 두 줄로 넘어가도 크기가 달라지지 않도록 body 크기 늘려줌 / 제목은 정가운데 배열로 변경 */
+.card-body {
+  height: 90px;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+}
+.card-title{
+  font-size: 1.3rem;
 }
 
 </style>

@@ -1,15 +1,15 @@
 <template>
   <div>
-      <span v-for="movie in getRecommendedList" :key="movie.id">
+      <div v-for="movie in getRecommendedList" :key="movie.id">
         <span @click="GoCommunity(movie)" class="card text-bg-dark">
         <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img" alt="...">
         <div class="card-img-overlay">
           <!-- css 로 제목 잘보이게 만들기! -->
           <!-- 카드 margin 음수로 줘보기 -->
-          <h5 class="card-title" style="font-family:'yang';text-shadow: 2px 2px 2px navy;">{{ movie.title }}</h5>
+          <h5 class="card-title" style="font-family:'yang'; text-shadow: 2px 2px 2px navy;">{{ movie.title }}</h5>
         </div>
       </span>
-    </span>
+    </div>
   </div>
 </template>
 
