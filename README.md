@@ -20,11 +20,15 @@
       
       > ###### 하위 컴포넌트 : MovieCard.vue
     
-    - SearchList.vue
+    - **SearchListView.vue**
       
       : 검색창에 입력한 값을 기반으로 관련 영화 카드들의 목록 구현
       
+      > ###### 검색창에 입력 후 엔터를 누르면 SearchListView.vue 로 이동
+      > 
       > ###### 하위 컴포넌트 : MovieCard.vue
+      > 
+      > ###### 영화 카드 클릭 시 영화 상세정보 페이지로 이동
     
     - **MovieCard.vue**
       

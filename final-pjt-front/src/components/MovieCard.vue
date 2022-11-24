@@ -44,6 +44,7 @@ export default {
 #cardhover:hover {
   border: solid 1px orange;
   overflow: hidden;
+  filter: brightness(70%);
   transition-delay: 2ms;
 }
 

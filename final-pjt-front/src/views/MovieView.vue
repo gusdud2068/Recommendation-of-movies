@@ -10,7 +10,7 @@
       </h1>
       <hr>
       <div style="display:flex;">
-        <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
+        <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px; border-radius:20px;">
     
         <div class="all">
           <div class="back1">
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div>
-            <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px ;margin-top: 20px; box-shadow: 2px;"></iframe>
+            <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:570px ;margin-top: 20px; box-shadow: 2px; border-radius: 20px;"></iframe>
           </div>
         </div>
       </div>
