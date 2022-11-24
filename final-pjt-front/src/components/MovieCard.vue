@@ -33,7 +33,6 @@ export default {
   overflow:auto;
   border-radius: 20px;
   font-family:'VITRO CORE TTF';
-  /* opacity: 1; */
   align-items:flex-start;
   flex-wrap:wrap;
 }

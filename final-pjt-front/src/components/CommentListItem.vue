@@ -10,10 +10,8 @@
       </div>
       <div class="toast-body">
     <div style="margin-top: 10px">
-      <!-- <p>작성자: {{ comment.username }}</p> -->
       <p>내용: {{ comment.content }}</p>
       <input @click="openPopup()" class="btn btn-warning" style="width:20%; height: 10%;" type="submit" id="update" value="수정">
-      <!-- <input @click="deleteComment" class="btn btn-warning" style="width:20%; height: 10%;" type="submit" id="submit" value="삭제"> -->
       <hr>
       <div class="popup-view" :class="{ active : popupView }">
         <PopUp
@@ -27,14 +25,6 @@
       </div>
       </div>
     </div>
-    <!-- <p>{{ comment.like_users }}</p> -->
-    <!-- 좋아요 실패., -->
-    <!-- <div v-if="isLiked">
-      <button @click="likesChange()">좋아요 취소</button>
-    </div>
-    <div v-else>
-    <button @click="likesChange()">좋아요</button>
-    </div> -->
   </div>
 </template>
 
@@ -71,58 +61,34 @@ export default {
     updateComment() {
       console.log(this.comment)
       console.log(this.latestmovie)
+      this.$emit('update-comment', this.latestmovie)
       // this.$store.dispatch('getComments', this.latestmovie)
     },
     // 댓글 삭제
     // 댓글 삭제 후 댓글 목록 다시 업데이트 하려면,,,?
     deleteComment() {
-            // alert('댓글을 삭제하시겠습니까?')
-            let token = localStorage.getItem('jwt')
-            axios({
-                method: "delete",
-                url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then(() => {
-                // this.$emit('update-commentlist')
-                // store 에서 댓글 다시 가져오기 실행??
-                // 댓글이 하나 남은 것을 삭제 할때 업데이트 안됨
-                this.$store.dispatch('getComments', this.latestmovie)
-                alert('댓글이 삭제되었습니다.')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        },
-    likesChange() {
-      // console.log(a)
       let token = localStorage.getItem('jwt')
-      this.isLiked = !this.isLiked
-      // console.log(token)
-
       axios({
-        method: 'post',
-        url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/like/`,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+          method: "delete",
+          url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
       })
-        .then((res) => {
-          console.log(res.data.is_liked)
-          this.likeCount = res.data.like_count
-          // this.$store.dispatch('getComments', this.latestmovie)
-        })
-    },    
+      .then(() => {
+        // this.$emit('delete-comment', this.latestmovie)
+        this.$store.dispatch('getComments', this.latestmovie)
+        alert('댓글이 삭제되었습니다.')
+      })
+      .catch((err) => {
+          console.log(err)
+      })
+  },   
   },
   filters: {
     changeDate(value) {
-      // console.log(value)
       const changedate = value.slice(0, 10)
-      // console.log(changedate)
       const changetime = value.slice(11, 16)
-      // console.log(changetime)
       const result = `${changedate} | ${changetime}`
       return result
     }

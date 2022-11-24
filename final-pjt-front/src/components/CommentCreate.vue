@@ -42,9 +42,7 @@ export default {
       })
         .then(() => {
           this.comment_content = null
-          // ???/?
           this.$store.dispatch('getComments', this.latestmovie)
-          // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
         })
         .catch((err) => {
           alert('로그인 후 이용 가능합니다.')

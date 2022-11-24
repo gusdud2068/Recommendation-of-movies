@@ -31,11 +31,6 @@ import CommentList from '@/components/CommentList'
 
 export default {
   name: 'CommunityView',
-  // computed: {
-  //   getTitle() {
-  //     return this.$store.state.recommendname
-  //   }
-  // },
   components: { CommentCreate, CommentList },
   data() {
     return {
@@ -55,7 +50,6 @@ export default {
     }
   },
   methods: {
-    // TypeError: Cannot read properties of undefined (reading 'key') 해결하기!!
     getVideo() {
       this.latestmovie = this.$route.params.latestmovie_id
       axios({
@@ -72,47 +66,34 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-        // console.log(this.latestmovie)
       this.$store.dispatch('getComments', this.latestmovie)
     },
     // 댓글이 없을 때 404 에러 발생, 댓글 작성 후에는 괜찮음
     // 해결 필요!
-    // LatestMovies.vue 에서 GoCommunity 함수에서 store 에 댓글리스트 저장 실행 후 해결...?
-    // getComments(movie_id) {
-    //   this.$store.dispatch('getComments', movie_id)
-    // }
   },
   created() {
     this.getVideo()
-    this.getBackgroundImage2
-    // this.getMovieDetail()
   },
-  // watch: {
-  //   latestmovie() {
-  //     console.log(`${this.latestmovie} 들어옴` )
-  //     // this.getComments(this.latestmovie)
-  //   }
-  // }
+
 }
 </script>
 
 <style>
 .user-wrap1{
-    width:100%;
-    position: relative;
+  width:100%;
+  position: relative;
     
 }
 .user-text1{
-    position:absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    /* color: white; */
-    display: flex;
-    height: 100%;
-    margin-top: 50px;
-    justify-content: center;
-    z-index: 2;
+  position:absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  display: flex;
+  height: 100%;
+  margin-top: 50px;
+  justify-content: center;
+  z-index: 2;
 }
 .video{
   box-shadow: 5px 5px 5px;
@@ -120,24 +101,20 @@ export default {
   z-index: 1;
 }
 .font{
-  
   margin-bottom: 80px;
   border: 2;
   width: 90%;
   height: 3px;
-  /* background:; */
-  /* z-index: 2; */
 }
 .backimg1{
-    position:fixed;
-    top: 0%;
-    right:0px;
-    width:100%;
-    height: 100vh;
-    vertical-align: middle;
-    /* opacity: 0.3; */
-    filter: brightness(60%);
-    z-index: -100;
+  position:fixed;
+  top: 0%;
+  right:0px;
+  width:100%;
+  height: 100vh;
+  vertical-align: middle;
+  filter: brightness(60%);
+  z-index: -100;
 }
 .all1{
   display: flex;

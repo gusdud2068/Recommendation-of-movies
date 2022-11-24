@@ -3,14 +3,12 @@
     <img v-if="getBackgroundImage" :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage}`" class="backimg" alt="...">
     <div class="user-text">
     <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
-    <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
     <div style="display:flex;">
     <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
     
     <div class="all">
       <div class="back1">
         <div style="text-align:left;line-height:20px;">
-      <!-- 평점 if 문으로 별로 구현하기 -->
       <br>
       <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
       <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
@@ -28,6 +26,7 @@
   <div class="movie_list">
     <LatestMovies
       :genres="genres"
+      :movie="movie"
     />
   </div>
     </div>
@@ -72,7 +71,6 @@ export default {
         })
         .catch((err) => {
           console.log(err)
-          // 없다면 에러페이지로 이동
           this.$router.push({ name: "NotFound404" })
         })
       },
@@ -123,7 +121,6 @@ h1{
     width:100%;
     height: 100vh;
     vertical-align: middle;
-    /* opacity: 0.3; */
     filter: brightness(60%);
     z-index: -1;
 }
@@ -138,10 +135,7 @@ h1{
     top: 10%;
     left: 50%;
     transform: translate( -50%, -50% );
-    /* color: white; */
-    /* display: flex; */
     height: 100%;
-    /* margin-top: 100px; */
     z-index: 2;
     
 }

@@ -17,7 +17,6 @@ export default new Vuex.Store({
     moviesList: [],
     movieVideo: [],
     comments: [],
-    // recommendname: [],
     latestmovie: [],
     searchList: [],
     backdrop_url: null,
@@ -68,7 +67,6 @@ export default new Vuex.Store({
       context.commit("SAVE_SEARCH_RESULT", result)
     },
     saveImageMovie(context, url) {
-      // console.log(url)
       context.commit('SAVE_IMAGE_MOVIE', url)
     },
     saveImageMovieLatest(context, url) {

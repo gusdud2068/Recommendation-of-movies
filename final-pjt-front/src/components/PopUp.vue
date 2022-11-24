@@ -72,9 +72,7 @@ export default {
                 // this.$store.dispatch('getComments', this.latestmovie)
                 this.$emit('update-comment')
                 location.reload();
-                // ???/?
                 
-                // this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${this.latestmovie}`}})
             })
             .catch((err) => {
                 console.log(err);
@@ -89,9 +87,5 @@ export default {
 </script>
 
 <style>
-/* .close-image {
-    width: 10%;
-    height: 10%;
-} */
 
 </style>

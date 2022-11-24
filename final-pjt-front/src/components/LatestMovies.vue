@@ -24,6 +24,7 @@ export default {
   },
   props: {
     genres: Array,
+    movie: Object,
   },
   methods: {
       recommendMovie() {
@@ -38,7 +39,13 @@ export default {
             return movie.genres.includes(genre)
           })
           const randommovie9 = recommend_movies.sort(() => 0.5 - Math.random())
-          this.recommends = randommovie9.splice(0, 9)
+          const recommend1 = randommovie9.splice(0, 9)
+          const result = recommend1.filter((recommend) => {
+            return recommend.id != this.movie.id
+          })
+          console.log(result.length)
+          this.recommends = result
+          
         })
         .catch((err) => {
           console.log(err)
