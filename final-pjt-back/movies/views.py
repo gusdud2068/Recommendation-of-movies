@@ -10,10 +10,15 @@ from .serializers import MovieListSerializer, GenreSerializer, LatestMovieSerial
 @api_view(["GET"])
 def index(request):
     if request.method == "GET":
-        # 뒤에서부터 정렬(어떡하징)
-        movies = Now_Movie.objects.all().union(Top_Movie.objects.all()).order_by('-id')
-        serializer = MovieListSerializer(movies, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        # movies = Now_Movie.objects.all().union(Top_Movie.objects.all()).order_by('-id')
+        # serializer = MovieListSerializer(movies, many=True)
+        movies_now = Now_Movie.objects.all().order_by('-id')
+        serializer_now = LatestMovieSerializer(movies_now, many=True)
+        movies_top = Top_Movie.objects.all().order_by('-id')
+        serializer_top = MovieListSerializer(movies_top, many=True)
+        result = serializer_now.data + serializer_top.data
+        # print(result) 
+        return Response(result, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
 def now(request):

@@ -12,8 +12,8 @@
         <div style="text-align:left;line-height:20px;">
       <!-- 평점 if 문으로 별로 구현하기 -->
       <br>
-      <p style="font-family: 'yang';text-shadow: 1px 0px 0px white; "> <span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
-      <p style="font-family: 'yang';text-shadow: 1px 0px 0px white"> <span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
+      <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
+      <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
       <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 0px 0px white;"> <span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span></p>
       </div>
     </div>
@@ -24,7 +24,7 @@
     
   </div>
   <hr>
-  <h1 style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
+  <h1 v-if="check" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
   <div class="movie_list">
     <LatestMovies
       :genres="genres"
@@ -47,6 +47,7 @@ export default {
       genres: null,
       video: null,
       isClicked: false,
+      check: false,
     }
   },
   computed: {
@@ -87,7 +88,13 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },   
+    },
+    checkGenre(genres) {
+      console.log(genres)
+      if (genres.length != 0) {
+        this.check = true
+      }
+    } 
 
   },
   created() {
@@ -97,6 +104,9 @@ export default {
   watch: {
     movie() {
       this.movieVideo(this.movie)
+    },
+    genres() {
+      this.checkGenre(this.genres)
     }
   }
 }
@@ -154,7 +164,6 @@ h1{
   padding: 20px;
 }
 
-/* 옆으로 스크롤 안돼용 */
 .movie_list {
     display: flex;
     width: 1000px;
@@ -163,8 +172,6 @@ h1{
     height: 450px;
     overflow-y:hidden;
     white-space: nowrap;
-    
-    
 }
 
 .movie_list::-webkit-scrollbar{
