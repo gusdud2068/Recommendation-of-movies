@@ -4,7 +4,10 @@
     <!-- store 에 저장할 때 vuex-persistedstate 를 이용해서 store의 state 초기화 방지 -->
     <img v-if="getBackgroundImage2" :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage2}`" class="backimg1" alt="...">
     <div class="all1">
-    <h1 class="font" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white;" ><img src="@/assets/sparkling.gif" width="5%" class="sparkling">{{ getMovie.title }}<img src="@/assets/sparkling.gif" width="5%" class="sparkling"></h1>
+    <h1 class="font" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white; z-index: 3;" @click="godetail(getMovie)" >
+      <img src="@/assets/sparkling.gif" width="5%" class="sparkling">{{ getMovie.title }}<img src="@/assets/sparkling.gif" width="5%" class="sparkling">
+      <!-- <button class="btn btn-warning" style="width:40px; height: 20px;" >자세히</button> -->
+    </h1>
     <div class="user-text1">
     <div style="display:flex; width: 80%; margin-top: 60px; ">
       <iframe v-if="video" class="video" style="margin: auto;" v-show="content" :src="`https://www.youtube.com/embed/${video}?`" frameborder="0" width="1200" height="500"></iframe>
@@ -50,6 +53,9 @@ export default {
     }
   },
   methods: {
+    godetail(movie){
+      this.$router.push({name:'movie',params:{id:`${movie.id}`}})
+    },
     getVideo() {
       this.latestmovie = this.$route.params.latestmovie_id
       axios({
@@ -61,6 +67,7 @@ export default {
             const video = res.data.results[0].key
             this.video = video
             this.content = true
+          console.log(this.getMovie)
           }
         })
         .catch((err) => {

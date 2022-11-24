@@ -1,29 +1,29 @@
 <template>
   <div id="app">
     <img :src="`https://image.tmdb.org/t/p/original/${getImage}`" class="backimg" alt="..." style="z-index: -9999;">
-  <br>
-  <hr class="hrstyle">
-  <div class="logo2 back">
-  <img src="@/assets/logo2.png" width="100%">
-  <hr class="hrstyle">
-  </div>
-      <nav class="navbar navbar-expand-lg" style="text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2;">
-        <div class="container-fluid">
+    <br>
+    <hr class="hrstyle">
+    <div class="logo2 back">
+      <img src="@/assets/logo2.png" width="100%">
+      <hr class="hrstyle">
+    </div>
+    <nav class="navbar navbar-expand-lg" style="text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2;">
+      <div class="container-fluid">
         <img src="@/assets/sun.png" width="70px" height="30px">
         <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           </ul>
-        <span v-show="isLoggedIn">
-          <router-link @click.native="logout" to="#">Logout</router-link>
-        </span>
-        <span v-show="!isLoggedIn">
-          <router-link :to="{ name: 'Signup' }">Signup</router-link> |
-          <router-link :to="{ name: 'Login' }">Login</router-link>
-        </span>
+          <span v-show="isLoggedIn">
+            <router-link @click.native="logout" to="#">Logout</router-link>
+          </span>
+          <span v-show="!isLoggedIn">
+            <router-link :to="{ name: 'Signup' }">Signup</router-link> |
+            <router-link :to="{ name: 'Login' }">Login</router-link>
+          </span>
         </div>
       </div>
     </nav>
@@ -121,21 +121,25 @@ nav a.router-link-exact-active {
 .v-application {
   font-family: 'VITRO CORE TTF', sans-serif !important;
 }
+
 @font-face {
   font-family:'VITRO CORE TTF';
   src: url('assets/VITRO CORE TTF.ttf') format('truetype');
   font-weight: 400;
 }
+
 @font-face {
   font-family:'yang';
   src: url('assets/yang.ttf') format('truetype');
   font-weight: 400;
 }
+
 @font-face {
   font-family:'overview';
   src: url('assets/overview.ttf') format('truetype');
   font-weight: 400;
 }
+
 .hrstyle{
   margin: auto;
   border: 0;
@@ -144,6 +148,7 @@ nav a.router-link-exact-active {
   background: white;
   z-index: 2;
 }
+
 .back{
   background-color: rgba( 255, 255, 255, 0.3 );
 }

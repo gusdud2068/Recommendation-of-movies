@@ -2,33 +2,50 @@
   <div class="user-wrap">
     <img v-if="getBackgroundImage" :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage}`" class="backimg" alt="...">
     <div class="user-text">
-    <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
-    <div style="display:flex;">
-    <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
+      <h1>
+        <img src="@/assets/sparkling.gif" width="5%" class="sparkling">
+        <span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span>
+        <span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span>
+        <img src="@/assets/sparkling.gif" width="5%">
+      </h1>
+      <hr>
+      <div style="display:flex;">
+        <img :src="`https://www.themoviedb.org/t/p/original${movie?.poster_path}`" alt="" style="height:600px; margin-right:10px;">
     
-    <div class="all">
-      <div class="back1">
-        <div style="text-align:left;line-height:20px;">
-      <br>
-      <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">V</span>OTE_<span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}</p>
-      <p style="font-family:'yang';text-shadow: 1px 0px 0px white;"> <span style="color:orange;">R</span>ELEASE_<span style="color:orange;">D</span>ATE : {{ movie?.release_date }}</p>
-      <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 0px 0px white;"> <span style="color:orange;">O</span>VERVIEW :<span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span></p>
+        <div class="all">
+          <div class="back1">
+            <div style="text-align:left;line-height:20px;">
+              <br>
+              <p style="font-family:'yang';text-shadow: 1px 0px 0px white;">
+                <span style="color:orange;">V</span>OTE_
+                <span style="color:orange;">A</span>VERAGE : {{ movie?.vote_average }}
+              </p>
+              <p style="font-family:'yang';text-shadow: 1px 0px 0px white;">
+                <span style="color:orange;">R</span>ELEASE_
+                <span style="color:orange;">D</span>ATE : {{ movie?.release_date }}
+              </p>
+              <p v-if="movie?.overview" style="font-family:'yang'; text-shadow: 1px 0px 0px white;">
+                <span style="color:orange;">O</span>VERVIEW :
+                <span style="font-family:overview; font-weight:bold;"><br>{{ movie?.overview }}</span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px ;margin-top: 20px; box-shadow: 2px;"></iframe>
+          </div>
+        </div>
       </div>
-    </div>
-    <div>
-      <iframe v-if="video" :src="`https://www.youtube.com/embed/${video}?autoplay=1`" frameborder="0" style="height:300px; width:450px ;margin-top: 20px; box-shadow: 2px;"></iframe>
-    </div>
-    </div>
-    
-  </div>
-  <hr>
-  <h1 v-if="check" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">당신의 <br> <span style="color:orange"><img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화</h1>
-  <div class="movie_list">
-    <LatestMovies
-      :genres="genres"
-      :movie="movie"
-    />
-  </div>
+      <hr>
+      <h1 v-if="check" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">당신의 <br> 
+        <span style="color:orange">
+          <img src="@/assets/sparkling.gif" width="4%" style="float:center">취향<img src="@/assets/sparkling.gif" width="4%" style="float:center"></span>을 <br>저격할 상영중인 영화
+      </h1>
+      <div class="movie_list">
+        <LatestMovies
+          :genres="genres"
+          :movie="movie"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -93,11 +110,9 @@ export default {
         this.check = true
       }
     } 
-
   },
   created() {
     this.getDetail()
-
   },
   watch: {
     movie() {
@@ -124,12 +139,12 @@ h1{
     filter: brightness(60%);
     z-index: -1;
 }
+
 .user-wrap{
     width:100%;
     position: relative;
-    
-    
 }
+
 .user-text{
     position:absolute;
     top: 10%;
@@ -137,20 +152,21 @@ h1{
     transform: translate( -50%, -50% );
     height: 100%;
     z-index: 2;
-    
 }
 
 .sparkling{
   transform: rotateY( 180deg ) ; 
 }
+
 .logo2{
     z-index: 2;
 }
+
 .all {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  }
+}
 
 .back1{
   background-color: rgba( 255, 255, 255, 0.65 );
@@ -170,8 +186,8 @@ h1{
 
 .movie_list::-webkit-scrollbar{
   opacity: 0;
-    
 }
+
 .movie_list::-webkit-scrollbar-thumb{
     background-color: orange;
 }
