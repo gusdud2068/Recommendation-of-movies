@@ -1,36 +1,34 @@
 <template>
   <div id="app">
-    <img :src="`https://image.tmdb.org/t/p/original/${getImage}`" class="backimg" alt="..." >
+    <img :src="`https://image.tmdb.org/t/p/original/${getImage}`" class="backimg" alt="..." style="z-index: -9999;">
   <br>
   <hr class="hrstyle">
   <div class="logo2 back">
-  <img src="@/assets/logo2.png" width="100%" >
+  <img src="@/assets/logo2.png" width="100%">
   <hr class="hrstyle">
   </div>
-    <nav>
       <nav class="navbar navbar-expand-lg" style="text-shadow: -1px 0 navy, 0 1px navy, 1px 0 navy, 0 -1px navy; text-decoration-line: underline; z-index: 2;">
-    <div class="container-fluid">
-    <img src="@/assets/sun.png" width="70px" height="30px">
-    <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      </ul>
-    <span v-show="isLoggedIn">
-      <router-link @click.native="logout" to="#">Logout</router-link>
-    </span>
-    <span v-show="!isLoggedIn">
-      <router-link :to="{ name: 'Signup' }">Signup</router-link> |
-      <router-link :to="{ name: 'Login' }">Login</router-link>
-    </span>
-    </div>
-  </div>
-</nav>
-
+        <div class="container-fluid">
+        <img src="@/assets/sun.png" width="70px" height="30px">
+        <router-link class="nav-link active" @click.native="moviesList" :to="{ name: 'home' }">MOVIE</router-link>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+        <span v-show="isLoggedIn">
+          <router-link @click.native="logout" to="#">Logout</router-link>
+        </span>
+        <span v-show="!isLoggedIn">
+          <router-link :to="{ name: 'Signup' }">Signup</router-link> |
+          <router-link :to="{ name: 'Login' }">Login</router-link>
+        </span>
+        </div>
+      </div>
     </nav>
-      <router-view @login="changeLog"/>
+
+    <router-view @login="changeLog"/>
   </div>
 </template>
 
@@ -59,22 +57,21 @@ export default {
       axios({
         method: 'get',
         url: URL,
-      }).then((res) => {
-        let no_duplicate= []
-        let result = []
-        res.data.forEach((movie) => {
-          if (!no_duplicate.includes(movie.id)) {
-            no_duplicate.push(movie.id)
-            result.push(movie)
-          }
-        })
-        // console.log(no_duplicate)
-        // console.log(result)
-
-        this.$store.state.moviesList = result
-      }).catch((error) => {
-        console.log(error)
       })
+        .then((res) => {
+          let no_duplicate= []
+          let result = []
+          res.data.forEach((movie) => {
+            if (!no_duplicate.includes(movie.id)) {
+              no_duplicate.push(movie.id)
+              result.push(movie)
+            }
+          })
+          this.$store.dispatch('save_movielist', result)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
   },
   computed: {
@@ -84,8 +81,6 @@ export default {
         return movie.backdrop_path
       })
       const random_index = Math.floor(Math.random() * (backdrop_paths.length))
-      console.log(backdrop_paths)
-      console.log(random_index)
       const backgroundimage_url = backdrop_paths[random_index].backdrop_path
       return backgroundimage_url
     }

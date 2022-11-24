@@ -21,6 +21,7 @@ export default new Vuex.Store({
     latestmovie: [],
     searchList: [],
     backdrop_url: null,
+    backdrop_url2: null,
   },
   getters: {
   },
@@ -34,6 +35,12 @@ export default new Vuex.Store({
     },
     SAVE_IMAGE_MOVIE(state, url) {
       state.backdrop_url = url
+    },
+    SAVE_IMAGE_MOVIE2(state, url) {
+      state.backdrop_url2 = url
+    },
+    SAVE_MOVIELIST(state, movielist) {
+      state.moviesList = movielist
     }
   },
   actions: {
@@ -48,13 +55,9 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          // for (let i=0; i < res.data.length; i++) {
           const movie_comment = res.data.filter((movie) => {
             return movie.movie === Number(movie_id)
           })
-          // console.log(movie_comment)
-          // }
-          console.log(movie_comment)
           context.commit('GET_COMMENTS', movie_comment)
         })
         .catch((err) => {
@@ -65,7 +68,15 @@ export default new Vuex.Store({
       context.commit("SAVE_SEARCH_RESULT", result)
     },
     saveImageMovie(context, url) {
+      // console.log(url)
       context.commit('SAVE_IMAGE_MOVIE', url)
+    },
+    saveImageMovieLatest(context, url) {
+      console.log(url)
+      context.commit('SAVE_IMAGE_MOVIE2', url)
+    },
+    save_movielist(context, result) {
+      context.commit('SAVE_MOVIELIST', result)
     }
   },
   modules: {

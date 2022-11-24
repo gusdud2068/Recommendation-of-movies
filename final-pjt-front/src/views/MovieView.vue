@@ -1,6 +1,6 @@
 <template>
   <div class="user-wrap">
-    <img :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage}`" class="backimg" alt="...">
+    <img v-if="getBackgroundImage" :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage}`" class="backimg" alt="...">
     <div class="user-text">
     <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
@@ -57,23 +57,17 @@ export default {
   methods: {
     getDetail() {
       const movie_id = this.$route.params.id
-      // console.log(typeof(movie_id))
-      // console.log(movie_id)
       axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/movies/'
       })
         .then((res) => {
-          // console.log(res.data)
-          // console.log(res.data.movie_id)
           const detail = res.data.filter((movie) => {
             return movie.id === Number(movie_id)
           })
           const genres = detail[0].genres
           this.genres = genres
-          // console.log(this.genres)
           this.movie = detail[0]
-          // console.log(this.movie)
         })
         .catch((err) => {
           console.log(err)
@@ -89,10 +83,6 @@ export default {
         .then((res) => {
           const video = res.data.results[0].key
           this.video = video
-          // this.video = `https://wwww.youtube.com/embed/${video}?autoplay=1`
-          // console.log(this.video)
-          // this.$store.state.movieVideo= res.data.results[0]
-          // console.log(this.$store.state.movieVideo)
         })
         .catch((err) => {
           console.log(err)

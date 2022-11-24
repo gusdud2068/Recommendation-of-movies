@@ -46,7 +46,7 @@ export default {
     },
     GoCommunity(movie) {
       this.$store.state.latestmovie = movie
-      console.log(this.$store.state.latestmovie)
+      this.$store.dispatch('saveImageMovieLatest', movie.backdrop_path)
       this.$store.dispatch('getComments', movie.id)
       this.$router.push({ name: 'latestmovie', params: { latestmovie_id : `${movie.id}`}})
 

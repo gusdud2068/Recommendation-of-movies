@@ -2,7 +2,7 @@
   <div class="user-wrap1">
     <!-- 새로고침하면 제목사라짐,,., 해결 완.-->
     <!-- store 에 저장할 때 vuex-persistedstate 를 이용해서 store의 state 초기화 방지 -->
-    <img :src="`https://image.tmdb.org/t/p/original/${getMovie?.backdrop_path}`" class="backimg1" alt="...">
+    <img v-if="getBackgroundImage2" :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage2}`" class="backimg1" alt="...">
     <div class="all1">
     <h1 class="font" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white;" ><img src="@/assets/sparkling.gif" width="5%" class="sparkling">{{ getMovie.title }}<img src="@/assets/sparkling.gif" width="5%" class="sparkling"></h1>
     <div class="user-text1">
@@ -48,6 +48,10 @@ export default {
   computed: {
     getMovie() {
       return this.$store.state.latestmovie
+    },
+    getBackgroundImage2() {
+      console.log(this.$store.state.backdrop_url2)
+      return this.$store.state.backdrop_url2
     }
   },
   methods: {
@@ -80,6 +84,7 @@ export default {
   },
   created() {
     this.getVideo()
+    this.getBackgroundImage2
     // this.getMovieDetail()
   },
   // watch: {

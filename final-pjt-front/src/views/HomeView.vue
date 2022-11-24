@@ -28,9 +28,9 @@ export default {
     }
   },
   computed: {
-      moviesList() {
-          return this.$store.state.moviesList
-      }
+    moviesList() {
+        return this.$store.state.moviesList
+    }
   },
   methods: {
     searchMovie(inputValue) {

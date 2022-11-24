@@ -1,9 +1,8 @@
 <template>
   <div class="card" id="cardhover">
-    <img @click="movieDetail(movie)" :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img-top" alt="...">
+    <img @click="movieDetail()" :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ movie.title }}</h5>
-      <!-- <p class="card-text">{{ movie.overview }}</p> -->
     </div>
   </div>
 </template>
@@ -16,12 +15,11 @@ export default {
     movie: Object
   },
   methods: {
-  movieDetail(movie) {
-    // console.log(movie.id)
-    this.$store.dispatch('saveImageMovie', movie.backdrop_path)
-    this.$router.push({ name: 'movie', params: { id: `${movie.id}`}})
+    movieDetail() {
+      this.$store.dispatch('saveImageMovie', this.movie.backdrop_path)
+      this.$router.push({ name: 'movie', params: { id: `${this.movie.id}`}})
+    }
   }
-}
 };
 </script>
 
@@ -40,7 +38,6 @@ export default {
   flex-wrap:wrap;
 }
 #cardhover:hover {
-  /* 배경바꾸고 다시 보더 색 정하기 */
   border: solid 1px orange;
   overflow: hidden;
   transition-delay: 2ms;
