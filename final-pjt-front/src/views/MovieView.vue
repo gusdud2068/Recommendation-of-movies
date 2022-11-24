@@ -1,6 +1,6 @@
 <template>
   <div class="user-wrap">
-    <img @click="imgclick()"  :src="`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`" class="backimg" alt="...">
+    <img :src="`https://image.tmdb.org/t/p/original/${getBackgroundImage}`" class="backimg" alt="...">
     <div class="user-text">
     <h1><img src="@/assets/sparkling.gif" width="5%" class="sparkling"><span style="color:orange;text-shadow: 1px 3px black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black; font-size: 30px; ">  THIS MOVIE IS :   </span><span style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">"{{ movie?.title }}"</span><img src="@/assets/sparkling.gif" width="5%"></h1><hr>
     <!-- 포스터 없이 바로 트레일러 나올 수 있도록 만들어보자 -->
@@ -50,8 +50,9 @@ export default {
     }
   },
   computed: {
- 
-
+    getBackgroundImage() {
+      return this.$store.state.backdrop_url
+    }
   },
   methods: {
     getDetail() {
@@ -101,6 +102,7 @@ export default {
   },
   created() {
     this.getDetail()
+
   },
   watch: {
     movie() {

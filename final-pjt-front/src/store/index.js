@@ -20,6 +20,7 @@ export default new Vuex.Store({
     // recommendname: [],
     latestmovie: [],
     searchList: [],
+    backdrop_url: null,
   },
   getters: {
   },
@@ -30,6 +31,9 @@ export default new Vuex.Store({
 
     SAVE_SEARCH_RESULT(state, result) {
       state.searchList = result
+    },
+    SAVE_IMAGE_MOVIE(state, url) {
+      state.backdrop_url = url
     }
   },
   actions: {
@@ -59,6 +63,9 @@ export default new Vuex.Store({
     },
     save_search_result(context, result) {
       context.commit("SAVE_SEARCH_RESULT", result)
+    },
+    saveImageMovie(context, url) {
+      context.commit('SAVE_IMAGE_MOVIE', url)
     }
   },
   modules: {

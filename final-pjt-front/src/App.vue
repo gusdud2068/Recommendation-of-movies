@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img :src="`https://image.tmdb.org/t/p/original/${getImage}`" class="backimg" alt="..." >
   <br>
   <hr class="hrstyle">
   <div class="logo2 back">
@@ -57,14 +58,37 @@ export default {
       const URL = 'http://127.0.0.1:8000/movies/'
       axios({
         method: 'get',
-          url: URL,
-      }).then((response) => {
-        // console.log(response.data)
-          this.$store.state.moviesList = response.data
+        url: URL,
+      }).then((res) => {
+        let no_duplicate= []
+        let result = []
+        res.data.forEach((movie) => {
+          if (!no_duplicate.includes(movie.id)) {
+            no_duplicate.push(movie.id)
+            result.push(movie)
+          }
+        })
+        // console.log(no_duplicate)
+        // console.log(result)
+
+        this.$store.state.moviesList = result
       }).catch((error) => {
         console.log(error)
       })
     },
+  },
+  computed: {
+    getImage() {
+      const moviesinfo = this.$store.state.moviesList
+      const backdrop_paths = moviesinfo.filter((movie)=> {
+        return movie.backdrop_path
+      })
+      const random_index = Math.floor(Math.random() * (backdrop_paths.length))
+      console.log(backdrop_paths)
+      console.log(random_index)
+      const backgroundimage_url = backdrop_paths[random_index].backdrop_path
+      return backgroundimage_url
+    }
   },
   created() {
     this.moviesList()

@@ -10,7 +10,8 @@ from .serializers import MovieListSerializer, GenreSerializer, LatestMovieSerial
 @api_view(["GET"])
 def index(request):
     if request.method == "GET":
-        movies = Top_Movie.objects.all()
+        # 뒤에서부터 정렬(어떡하징)
+        movies = Now_Movie.objects.all().union(Top_Movie.objects.all()).order_by('-id')
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -20,16 +21,6 @@ def now(request):
         movies = Now_Movie.objects.all()
         serializer = LatestMovieSerializer(movies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-@api_view(["GET"])
-def movie_comments(request, movie_pk):
-    movie = Now_Movie.objects.get(pk=movie_pk)
-    serializer = LatestMovieSerializer(movie)
-    print(serializer)
-    comments = movie.comments_set.all()
-    print(comments)
-    return Response ({'Now_movie': serializer.data,'comments': comments,})
 
 @api_view(['GET'])
 def comment_list(request):

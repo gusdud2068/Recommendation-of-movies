@@ -17,7 +17,8 @@ export default {
   },
   methods: {
   movieDetail(movie) {
-    console.log(movie.id)
+    // console.log(movie.id)
+    this.$store.dispatch('saveImageMovie', movie.backdrop_path)
     this.$router.push({ name: 'movie', params: { id: `${movie.id}`}})
   }
 }
@@ -39,7 +40,8 @@ export default {
   flex-wrap:wrap;
 }
 #cardhover:hover {
-  border: solid 1px black;
+  /* 배경바꾸고 다시 보더 색 정하기 */
+  border: solid 1px orange;
   overflow: hidden;
   transition-delay: 2ms;
 }

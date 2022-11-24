@@ -2,7 +2,7 @@
   <div class="user-wrap1">
     <!-- 새로고침하면 제목사라짐,,., 해결 완.-->
     <!-- store 에 저장할 때 vuex-persistedstate 를 이용해서 store의 state 초기화 방지 -->
-    <img @click="imgclick()"  :src="`https://image.tmdb.org/t/p/original/${getMovie?.backdrop_path}`" class="backimg1" alt="...">
+    <img :src="`https://image.tmdb.org/t/p/original/${getMovie?.backdrop_path}`" class="backimg1" alt="...">
     <div class="all1">
     <h1 class="font" style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white;" ><img src="@/assets/sparkling.gif" width="5%" class="sparkling">{{ getMovie.title }}<img src="@/assets/sparkling.gif" width="5%" class="sparkling"></h1>
     <div class="user-text1">

@@ -39,11 +39,20 @@ export default {
         url: 'http://127.0.0.1:8000/movies/',
       })
         .then((res) => {
-          for(let i=0; i<res.data.length; i++){
-            if (res.data[i].title.includes(inputValue)) {
-              this.searcharr.push(res.data[i])
+          let no_duplicate= []
+          let result = []
+          res.data.forEach((movie) => {
+            if (!no_duplicate.includes(movie.id)) {
+              no_duplicate.push(movie.id)
+              result.push(movie)
+            }
+          })
+          for(let i=0; i<result.length; i++){
+            if (result[i].title.includes(inputValue)) {
+              this.searcharr.push(result[i])
             }
           }
+          console.log(this.searcharr)
           this.$store.dispatch("save_search_result", this.searcharr)
           this.$router.push({ name: 'SearchList'})
         })
