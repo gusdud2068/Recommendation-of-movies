@@ -10,7 +10,6 @@ const API_URL = 'http://127.0.0.1:8000'
 export default new Vuex.Store({
   plugins: [
     createPersistedState({
-      // paths: [""]
     })
   ],
   state: {
@@ -28,7 +27,6 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments) {
       state.comments = comments
     },
-
     SAVE_SEARCH_RESULT(state, result) {
       state.searchList = result
     },
@@ -43,7 +41,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // 최신영화에 달린 댓글 목록 가져오기
     getComments(context, movie_id) {
       let token = localStorage.getItem('jwt')
       axios({
@@ -70,7 +67,6 @@ export default new Vuex.Store({
       context.commit('SAVE_IMAGE_MOVIE', url)
     },
     saveImageMovieLatest(context, url) {
-      console.log(url)
       context.commit('SAVE_IMAGE_MOVIE2', url)
     },
     save_movielist(context, result) {

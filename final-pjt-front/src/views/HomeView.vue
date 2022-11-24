@@ -58,7 +58,6 @@ export default {
               this.searcharr.push(result[i]);
             }
           }
-          console.log(this.searcharr);
           this.$store.dispatch("save_search_result", this.searcharr);
           this.$router.push({ name: "SearchList" });
         })

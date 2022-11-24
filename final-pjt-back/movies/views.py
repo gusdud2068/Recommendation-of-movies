@@ -10,14 +10,11 @@ from .serializers import MovieListSerializer, GenreSerializer, LatestMovieSerial
 @api_view(["GET"])
 def index(request):
     if request.method == "GET":
-        # movies = Now_Movie.objects.all().union(Top_Movie.objects.all()).order_by('-id')
-        # serializer = MovieListSerializer(movies, many=True)
         movies_now = Now_Movie.objects.all().order_by('-id')
         serializer_now = LatestMovieSerializer(movies_now, many=True)
         movies_top = Top_Movie.objects.all().order_by('-id')
         serializer_top = MovieListSerializer(movies_top, many=True)
         result = serializer_now.data + serializer_top.data
-        # print(result) 
         return Response(result, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
@@ -30,16 +27,13 @@ def now(request):
 @api_view(['GET'])
 def comment_list(request):
     if request.method == 'GET':
-        # comments = Comments.objects.all()
         comments = get_list_or_404(Comments)
-        # print(comments)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
-    # comment = Comments.objects.get(pk=comment_pk)
     comment = get_object_or_404(Comments, pk=comment_pk)
 
     if request.method == 'GET':
@@ -59,7 +53,6 @@ def comment_detail(request, comment_pk):
 
 @api_view(['POST'])
 def comment_create(request, movie_pk):
-    # article = Article.objects.get(pk=article_pk)
     movie = get_object_or_404(Now_Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
     user = request.user

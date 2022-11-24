@@ -105,7 +105,6 @@ export default {
         })
     },
     checkGenre(genres) {
-      console.log(genres)
       if (genres.length != 0) {
         this.check = true
       }

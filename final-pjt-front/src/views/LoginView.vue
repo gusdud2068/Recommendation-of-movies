@@ -1,11 +1,11 @@
 <template>
-  <div class='login'>
+  <div class='login' style="text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white">
     <div class="mainlogin">
     <hr class="line">
     <h1 style="color:black;text-align:center">Login</h1>
     <hr class="line">
     <div>
-      <label for="username" style="font-family:VITRO CORE TTF; color:black;">사용자 이름: </label>
+      <label for="username" style="font-family:VITRO CORE TTF; color:black;">아이디: </label>
       <input type="text" id="username" v-model="credentials.username" />
     </div>
     <div>

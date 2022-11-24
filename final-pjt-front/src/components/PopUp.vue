@@ -1,91 +1,99 @@
 <template>
   <div>
-    <img @click="closePopup()" src="../assets/close-img.png" alt="" width="10px" height="10px" style="float: right;">
+    <img
+      @click="closePopup()"
+      src="../assets/close-img.png"
+      alt=""
+      width="10px"
+      height="10px"
+      style="float: right"
+    />
     <form @submit.prevent="updateComment">
       <label for="content"></label>
-      <textarea id="content" cols="30" rows="3" v-model="comment_content"></textarea><br>
-      <input @click="updateComment" class="btn btn-warning" type="submit" id="submit"  style="width:20%; height: 10%;" value="수정">  
+      <textarea
+        id="content"
+        cols="30"
+        rows="3"
+        v-model="comment_content"
+      ></textarea
+      ><br />
+      <input
+        @click="updateComment"
+        class="btn btn-warning"
+        type="submit"
+        id="submit"
+        style="width: 20%; height: 10%"
+        value="완료"
+      />
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-    name: 'PopUp',
-    data() {
-        return {
-            comment_content: null,
-        }
+  name: "PopUp",
+  data() {
+    return {
+      comment_content: null,
+    };
+  },
+  props: {
+    comment: Object,
+    latestmovie: String,
+  },
+  methods: {
+    closePopup() {
+      this.$emit("close-popup");
     },
-    props: {
-        comment: Object,
-        latestmovie: String,
-    },
-    methods: {
-        // 팝업 창 닫기
-        closePopup() {
-            this.$emit('close-popup')
+    getComment() {
+      let token = localStorage.getItem("jwt");
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        // 댓글 가져오기
-        // created ? mounted ? 생각해보기 (created 실행해보기)
-        getComment() {
-            let token = localStorage.getItem('jwt')
-            axios({
-                method: 'get',
-                url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then((res) => {
-                console.log(res.data)
-                this.comment_content = res.data.content
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        },
-        // 댓글 수정
-        // 수정 후 댓글 목록 다시 불러와야 함!
-        updateComment() {
-            const comment_content = this.comment_content
-            if (!comment_content) {
-                alert('댓글을 입력해주세요')
-                return
-            }
-            let token = localStorage.getItem('jwt')
-            axios({
-                method: "put",
-                url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
-                data: {
-                    content: comment_content,
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then(() => {
-                // 댓글 수정 후 업데이트가 안됨
-                // this.closePopup()
-                // this.$store.dispatch('getComments', this.latestmovie)
-                this.$emit('update-comment')
-                location.reload();
-                
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        },
-        
+      })
+        .then((res) => {
+          this.comment_content = res.data.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    created() {
-        this.getComment()
+    updateComment() {
+      const comment_content = this.comment_content;
+      if (!comment_content) {
+        alert("댓글을 입력해주세요");
+        return;
+      }
+      let token = localStorage.getItem("jwt");
+      axios({
+        method: "put",
+        url: `http://127.0.0.1:8000/movies/comments/${this.comment.id}/`,
+        data: {
+          content: comment_content,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(() => {
+          this.$emit("update-comment");
+          location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-}
+  },
+  created() {
+    this.getComment();
+  },
+};
 </script>
 
 <style>
-
 </style>

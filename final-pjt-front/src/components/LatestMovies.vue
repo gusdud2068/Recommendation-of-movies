@@ -43,7 +43,6 @@ export default {
           const result = recommend1.filter((recommend) => {
             return recommend.id != this.movie.id
           })
-          console.log(result.length)
           this.recommends = result
           
         })

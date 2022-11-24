@@ -4,7 +4,7 @@
     <form @submit.prevent="createComment">
       <label for="content" style="font-family:'yang';font-weight: light; text-shadow: 1px 3px white, 0 1.5px white, 1.5px 0 white, 0 -1.5px white; "> 댓글을 남겨주세요: </label>
       <textarea class="toast fade show" id="content" cols="80" rows="3" v-model="comment_content" style=""></textarea><br>
-      <input class="btn btn-warning" type="submit" id="submit" style="width:20%; height: 10%;">  
+      <input class="btn btn-warning" type="submit" id="submit" value="완료" style="width:20%; height: 10%;">  
     </form>
   </div>
 </template>

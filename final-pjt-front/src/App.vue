@@ -50,7 +50,6 @@ export default {
     },
     changeLog(){
       this.isLoggedIn = true;
-      console.log(this.isLoggedIn)
     },
     moviesList() {
       const URL = 'http://127.0.0.1:8000/movies/'
@@ -69,8 +68,8 @@ export default {
           })
           this.$store.dispatch('save_movielist', result)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch((err) => {
+          console.log(err)
         })
     },
   },
